@@ -19,7 +19,7 @@ angular.module('manshar')
         },
         'fabContent': {
           template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900">' +
-          '<i class="icon ion-plus"></i></button>',
+          '<i class="icon ion-plus"></i>+++++++++</button>',
           controller: function ($timeout) {
             /*$timeout(function () {
              document.getElementById('fab-profile').classList.toggle('on');
