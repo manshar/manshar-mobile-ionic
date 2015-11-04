@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('manshar')
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
