@@ -5,7 +5,6 @@ in ionic's _variables.scss file.
 For example, you might change some of the default colors:
 
 $light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
@@ -14,10 +13,347 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+$stable:                          #f9f9f9 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+
+@font-face {
+  font-family: 'fontawesome-manshar';
+  src: url('/fonts/fa-manshar-webfont.eot?-kybycc');
+  src: url('/fonts/fa-manshar-webfont.eot?#iefix-kybycc') format('embedded-opentype'),
+  url('/fonts/fa-manshar-webfont.woff2?-kybycc') format('woff2'),
+  url('/fonts/fa-manshar-webfont.woff?-kybycc') format('woff'),
+  url('/fonts/fa-manshar-webfont.ttf?-kybycc') format('truetype'),
+  url('/fonts/fa-manshar-webfont.svg?-kybycc##fa-manshar-webfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="fa-"], [class*=" fa-"], [class="fa"] {
+  font-family: 'fontawesome-manshar';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-bars:before {
+  content: "\f0c9";
+}
+
+.fa-heart:before {
+  content: "\f004";
+}
+
+.fa-th-large:before {
+  content: "\f009";
+}
+
+.fa-close:before {
+  content: "\f00d";
+}
+
+.fa-trash-o:before {
+  content: "\f014";
+}
+
+.fa-clock-o:before {
+  content: "\f017";
+}
+
+.fa-refresh:before {
+  content: "\f021";
+}
+
+.fa-tag:before {
+  content: "\f02b";
+}
+
+.fa-video-camera:before {
+  content: "\f03d";
+}
+
+.fa-image:before {
+  content: "\f03e";
+}
+
+.fa-pencil:before {
+  content: "\f040";
+}
+
+.fa-edit:before {
+  content: "\f044";
+}
+
+.fa-arrow-left:before {
+  content: "\f060";
+}
+
+.fa-arrow-right:before {
+  content: "\f061";
+}
+
+.fa-comment:before {
+  content: "\f075";
+}
+
+.fa-thumbs-o-up:before {
+  content: "\f087";
+}
+
+.fa-twitter:before {
+  content: "\f099";
+}
+
+.fa-facebook:before {
+  content: "\f09a";
+}
+
+.fa-github:before {
+  content: "\f09b";
+}
+
+.fa-group:before {
+  content: "\f0c0";
+}
+
+.fa-google-plus:before {
+  content: "\f0d5";
+}
+
+.fa-money:before {
+  content: "\f0d6";
+}
+
+.fa-comment-o:before {
+  content: "\f0e5";
+}
+
+.fa-desktop:before {
+  content: "\f108";
+}
+
+.fa-thumbs-up:before {
+  content: "\f164";
+}
+
+.fa-google:before {
+  content: "\f1a0";
+}
+
+.fa-paint-brush:before {
+  content: "\f1fc";
+}
+
+.fa-line-chart:before {
+  content: "\e600";
+}
+
+*{
+  padding:0;
+  margin:0;
+  direction: rtl;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body{
+  font-family: 'Droid Arabic Naskh', serif !important;
+  background: #fff;
+  font-size: 16px;
+  padding-top: 0 !important;
+}
+
+.card-list {
+  .card {
+    background-color: #fff;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.1);
+    cursor: default;
+    position: relative;
+    margin: 0.7em auto;
+    width: 95%;
+
+    .cover {
+      height: 100%;
+      width: 100%;
+    }
+
+    &.with-cover * {
+      color: #fff !important;
+    }
+
+    &.loading {
+      .header {
+        h1, h2, h3, .date {
+          width: 7em;
+          height: 1.5em;
+          margin-left: auto;
+          margin-right: 0;
+          background-color: #f6f6f6;
+
+          animation: bouncedelay 1.5s infinite ease-in-out;
+          /* Prevent first frame from flickering when animation starts */
+          animation-fill-mode: both;
+
+        }
+
+        h1 {
+          margin-top: -0.7em;
+        }
+
+        h2, .date {
+          margin-right: 1em;
+        }
+      }
+    }
+
+    .header {
+      height: 13em;
+      line-height: 12em;
+      padding-right: 2em;
+
+      .title {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+      }
+
+      h1 {
+        //font-size: 1.4em;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 0 5px;
+        margin-bottom: 0.3em;
+        word-wrap: normal;
+        color: #5A4C4C;
+        font-family: 'Droid Arabic Naskh', serif !important;
+      }
+
+      h2 {
+        //font-size: 0.7em;
+        font-size: 14px;
+        padding: 0 5px;
+        color: #5A4C4C;
+        font-family: 'Droid Arabic Naskh', serif !important;
+      }
+
+      a {
+        color: #5A4C4C;
+      }
+
+      .meta-data{
+        position: absolute;
+        width: 100%;
+        bottom: 1em;
+        right: 0;
+        font-size: 0.65em;
+        color: #aaa;
+        text-align: right;
+        padding-right: 3.5em;
+
+        a {
+          color: #aaa;
+        }
+
+        .category-topic {
+          position: absolute;
+          //left: -4.9em;
+          left: 0;
+          width: 4.9em;
+          bottom: 1em;
+          font-size: 1.2em;
+          text-align: center;
+
+          a {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .content {
+      padding: 1.5em;
+    }
+
+    .reading-time {
+      position: absolute;
+      top: 1.2em;
+      right: 4.2em;
+      font-size: 0.55em;
+      font-weight: bold;
+      color: #aaa;
+    }
+
+    .stats-box {
+      position: absolute;
+      top: 1em;
+      left: -6.6em;
+      width: 6.6em;
+      font-size: 0.6em;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+
+      i {
+        font-size: 1.4em;
+      }
+
+      span {
+        display: block;
+      }
+    }
+
+    &.draft {
+      border-top: 7px solid #b6b6b6;
+      border-left: none;
+    }
+
+    .profile-article-action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      button{
+        &.action-button {
+          background-color: #fff;
+          color: #b6b6b6;
+          box-shadow: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+ul.cards-list-container {
+  width: 100%;
+  padding: 1px;
+  list-style: none;
+  word-wrap: break-word;
+  background-color: #f9f9f9;
+  margin: 0 auto;
+  padding-bottom: 4em;
+}
+
+
+
 
