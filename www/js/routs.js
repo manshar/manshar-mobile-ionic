@@ -12,9 +12,19 @@ angular.module('starter')
 
     .state('app.articles', {
       url: '/articles',
+
       views: {
         'menuContent': {
           templateUrl: 'templates/articles/list.html'
+        },
+        'fabContent': {
+          template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900">' +
+          '<i class="icon ion-plus"></i></button>',
+          controller: function ($timeout) {
+            /*$timeout(function () {
+             document.getElementById('fab-profile').classList.toggle('on');
+             }, 800);*/
+          }
         }
       }
     })
