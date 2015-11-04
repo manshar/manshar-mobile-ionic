@@ -32,42 +32,88 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.articles', {
+    url: '/articles',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/articles/list.html'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.articlesnew', {
+      url: '/article/new',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/articles/edit.html'
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.articlesedite', {
+      url: '/article/:articleId/edit',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/articles/edit.html',
+          //controller: 'PlaylistsCtrl'
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.article', {
+    url: '/article/:articleId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/articles/show.html',
+        //controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+    .state('app.profile', {
+      url: '/profile/:userId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/profile/show.html',
+         // controller: 'PlaylistCtrl'
+        }
+      }
+    })
+    .state('app.profileEdit', {
+      url: '/profile/:userId/edit',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/profile/edit.html',
+         // controller: 'PlaylistCtrl'
+        }
+      }
+    })
+    .state('app.categories', {
+      url: '/categories',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/categories/List.html',
+          // controller: 'PlaylistCtrl'
+        }
+      }
+    })
+    .state('app.category', {
+      url: '/category/:categoryId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/categories/category.html',
+          // controller: 'PlaylistCtrl'
+        }
+      }
+    })
+    .state('app.topic', {
+      url: '/categories/:categoryId/topics/:topicId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/categories/topic.html',
+          // controller: 'PlaylistCtrl'
+        }
+      }
+    })
+  ;
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/articles');
 });
