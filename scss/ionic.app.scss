@@ -4,16 +4,16 @@ in ionic's _variables.scss file.
 
 For example, you might change some of the default colors:
 
-$light:                           #fff !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+$light:                           #fff !default;
 $stable:                          #f9f9f9 !default;
+$assertive:                       #ca1504 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -357,6 +357,26 @@ ul.cards-list-container {
   padding-bottom: 4em;
 }
 
-
+.button-float{
+  background: $assertive !important;
+  color:$light !important;
+  //width: 80px;
+  //height: 80px;
+  //padding-top: 15px;
+  font-size: 1.5em;
+  /*padding: 50px;*/
+  z-index: 12 !important;
+  position: absolute !important;
+  bottom: 10px !important;
+  left: 10px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transition: 0.2s linear !important;
+  transition: 0.2s linear !important;
+  -webkit-transition-property: -webkit-transform, all !important;
+  transition-property: transform, all !important;
+}
 
 
