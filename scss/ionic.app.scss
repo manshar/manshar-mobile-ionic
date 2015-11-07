@@ -42,7 +42,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  line-height: 1;
+  //line-height: 1;
 
   /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
@@ -355,6 +355,7 @@ ul.cards-list-container {
   background-color: #f9f9f9;
   margin: 0 auto;
   padding-bottom: 4em;
+  margin-top: $tabs-height;
 }
 
 .button-float{

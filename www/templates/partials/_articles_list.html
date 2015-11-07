@@ -1,32 +1,35 @@
 <ul class="cards-list-container one-column card-list">
-  <li class="card" ng-class="{'loading': article.loading, 'blinking': article.loading}">
-    <div class="article-details article-card" style="border-left: 4em solid #03A9F4;">
+  <li ng-repeat="article in articles track by $index" class="card" ng-class="{'loading': article.loading, 'blinking': article.loading}">
+    <div class="article-details article-card" style="border-left: 4em solid {{getCardColor(article.topic.category.color)}};">
       <div class="header tray">
         <div class="title">
           <a ng-href="#">
-            <h1>تحدي ثلاثين يوم</h1>
-            <h2>اليوم الثاني</h2>
+            <h1>{{article.title}}</h1>
+            <h2>{{article.tagline}}</h2>
           </a>
           <div class="meta-data">
             <div class="date">
-              الجمعة, 30 أكتوبر
+              <!-- todo set arabic date-->
+              {{article.published_at | date:'EEEE, d MMMM'}}
             </div>
-            <a ng-href="/profiles/{{article.user.id}}">
-              عبد الرحمان موساوي
+            <!-- todo go to specific profile-->
+            <a ng-hide="article.loading" ng-href="/profiles/{{article.user.id}}">
+              {{article.user.name}}
             </a>
-            <div class="category-topic" style="background-color: #03A9F4;">
+            <div class="category-topic" ng-show="article.topic.title" style="background-color: {{getCardColor(article.topic.category.color)}};">
+              <!-- todo go to categoey-->
               <a >
-                تحدي الثلاثين يوما
+                {{article.topic.title}}
               </a>
             </div>
           </div>
-          <span class="reading-time"> دقيقتان للقراءة </span>
+          <span class="reading-time" ng-hide="article.loading"> {{article.reading_time | timeToRead }} </span>
           <div class="stats-box">
-            <span >
-              <i class="fa fa-thumbs-o-up"></i> 1
+            <span ng-show="article.recommendations_count">
+              <i class="fa fa-thumbs-o-up"></i> {{article.recommendations_count}}
             </span>
-            <span >
-              <i class="fa fa-comment-o"></i> 2
+            <span ng-show="article.comments_count">
+              <i class="fa fa-comment-o"></i> {{article.comments_count}}
             </span>
           </div>
         </div>

@@ -4,7 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('manshar', ['ionic','manshar.controllers','manshar.services','AppConfig','ng-token-auth'])
+angular.module('manshar',
+  ['ionic',
+    'ngResource',
+    'manshar.controllers',
+    'manshar.services',
+    'manshar.filters',
+    'AppConfig',
+    'ng-token-auth'])
 
 .run(function($ionicPlatform,LoginService) {
   $ionicPlatform.ready(function() {
@@ -19,7 +26,7 @@ angular.module('manshar', ['ionic','manshar.controllers','manshar.services','App
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    
+
   });
 })
 
