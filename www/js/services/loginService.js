@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('manshar.services')
+angular.module('manshar.services',[])
   .service('LoginService', ['$rootScope', '$auth', function ($rootScope, $auth) {
 
     return {

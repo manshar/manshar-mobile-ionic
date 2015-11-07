@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('manshar', ['ionic','manshar.controllers','AppConfig'])
+angular.module('manshar', ['ionic','manshar.controllers','manshar.services','AppConfig','ng-token-auth'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,LoginService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,5 +19,23 @@ angular.module('manshar', ['ionic','manshar.controllers','AppConfig'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    
   });
-});
+})
+
+/**
+ * Sets up authentication for ng-token-auth.
+ */
+
+.config(['$authProvider', 'API_HOST', function($authProvider, API_HOST) {
+  $authProvider.configure({
+    apiUrl: 'http://' + API_HOST,
+    //confirmationSuccessUrl:  'http://' + window.location.host + '/login',
+    //passwordResetSuccessUrl: ('http://' + window.location.host +'/accounts/update_password'),
+    //authProviderPaths: {
+    //  facebook: '/auth/facebook',
+    //  gplus:   '/auth/gplus'
+    //},
+  });
+}])
+;
