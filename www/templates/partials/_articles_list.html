@@ -1,9 +1,9 @@
 <ul class="cards-list-container one-column card-list">
   <li ng-repeat="article in articles track by $index" class="card" ng-class="{'loading': article.loading, 'blinking': article.loading}">
     <div class="article-details article-card" style="border-left: 4em solid {{getCardColor(article.topic.category.color)}};">
-      <div class="header tray">
+      <div class="header">
         <div class="title">
-          <a ng-href="#">
+          <a ui-sref="app.article({articleId:article.id})" nav-direction="back">
             <h1>{{article.title}}</h1>
             <h2>{{article.tagline}}</h2>
           </a>

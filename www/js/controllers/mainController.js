@@ -1,4 +1,4 @@
-angular.module('manshar.controllers', [])
+angular.module('manshar')
 
 .controller('MainCtrl', function($scope,Article,User) {
     $scope.order = 'popular';

@@ -9,7 +9,6 @@ angular.module('manshar',
     'ngResource',
     'manshar.controllers',
     'manshar.services',
-    'manshar.filters',
     'manshar.derectivs',
     'AppConfig',
     'ng-token-auth'])
@@ -28,6 +27,14 @@ angular.module('manshar',
       StatusBar.styleDefault();
     }
 
+    //TODO get app version
+    //cordova.getAppVersion(function(version) {
+    //  $rootScope.version = version;
+    //});
+
+    //TODO set google analytics ID tracker
+    //window.analytics.startTrackerWithId('UA-XXXXXXXX-Y');
+
   });
 })
 
@@ -35,7 +42,7 @@ angular.module('manshar',
  * Sets up authentication for ng-token-auth.
  */
 
-.config(['$authProvider', 'API_HOST', function($authProvider, API_HOST) {
+.config(function($authProvider, API_HOST,$ionicConfigProvider) {
   $authProvider.configure({
     apiUrl: 'http://' + API_HOST,
     //confirmationSuccessUrl:  'http://' + window.location.host + '/login',
@@ -45,5 +52,8 @@ angular.module('manshar',
     //  gplus:   '/auth/gplus'
     //},
   });
-}])
+
+    //change go back text and icon
+    $ionicConfigProvider.backButton.text('رجوع').icon('ion-chevron-right');
+})
 ;

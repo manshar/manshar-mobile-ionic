@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('manshar.filters',[])
+angular.module('manshar')
   .filter('timeToRead', [function () {
     return function(time) {
       time = +time;

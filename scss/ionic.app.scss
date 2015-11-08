@@ -445,3 +445,287 @@ ul.cards-list-container {
   }
 }
 
+.dimmer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.4);
+}
+
+.article-header{
+  height: 300px;
+  position: relative;
+
+  .cover-image{
+    height: 100%;
+  }
+
+  &.nocover {
+    height: auto;
+    margin-bottom: 0;
+    padding-top: 4em;
+    padding-bottom: 1em;
+    bottom: 0;
+
+    .title {
+      color: #000;
+      text-shadow: none;
+      top: 3em;
+      position: static;
+
+      h1{
+        color: #000;
+      }
+
+      .reading-time, h2 {
+        color: #969696;
+      }
+    }
+  }
+
+  .title {
+    position: absolute;
+    z-index: 9;
+    color: #fff;
+    z-index: 9;
+    text-shadow: 1px 0 5px #333;
+    bottom: 2em;
+    right: 0;
+    left: 0;
+
+    h1 {
+      font-size: 27px;
+      padding: 20px 0 0;
+      box-sizing: initial;
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 100;
+      line-height: 25px;
+      color: #fff;
+    }
+
+    .reading-time {
+      font-size: 0.6em;
+      font-weight: bold;
+    }
+  }
+}
+.manshar-article {
+  background-color: #fff;
+  overflow-x: hidden;
+  padding: $padding-large-horizontal;
+  .next-article-container {
+    font-size: .8em;
+    position: relative;
+    height: 300px;
+
+    .manshar-article-image-container {
+      &.manshar-article-nocover {
+        background-color: #fdfdfd;
+        height: 100%;
+        box-shadow: 0 1px 5px 0 #999;
+
+        .manshar-article-header {
+          padding-top: 2em;
+        }
+      }
+    }
+
+    a {
+      color: #000;
+
+      &:hover, &:active {
+        color: #666666;
+      }
+    }
+  }
+
+  .article-container {
+    position: relative;
+    background: #fff;
+    padding-bottom: 2em;
+
+    margin-bottom: 10px;
+    transition: transform .3s;
+    &.anchored-comments-active {
+      transform: translateX(350px);
+      z-index: 99;
+    }
+
+    &.anchored-comments-active {
+      z-index: 10;
+    }
+
+    article {
+      margin: 0 auto;
+      font-size: 17px;
+      line-height: 35px;
+      min-height: 300px !important;
+      width: 100%;
+      font-weight: 100;
+      word-wrap: break-word;
+      text-align: justify;
+
+      b {
+        /* Firefox doesn't seem to bold b elements. */
+        font-weight: bold;
+      }
+
+      pre {
+        direction: ltr;
+        margin: 10px;
+        display: block;
+        padding-top: 1em;
+        overflow: scroll;
+      }
+
+      blockquote {
+        border-right: #f88 5px solid;
+        border-left-style: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+        margin: 36px 0;
+        color: #999;
+        font-size: 0.9em;
+      }
+
+      p {
+        margin: 1em auto;
+        margin-top: 1.4em;
+      }
+
+      span {
+        // Chrome has a bug that adds font-size on span elements in
+        // content editable stuff. This will make sure it takes the same size
+        // as it is parent paragraph.
+        font-size: 1.0em !important;
+        font-family: inherit !important;
+      }
+
+      hr {
+        width: 200px;
+        height: 1px;
+        margin: 20px auto;
+        background-color: #eee;
+        border: none;
+      }
+
+      figure {
+        padding: 1em;
+        text-align: center;
+
+        img {
+          max-width: 100%;
+          box-shadow: 0 0 5px -1px rgba(0,0,0,.1);
+        }
+
+        iframe {
+          border: none;
+          width: 100%;
+          height: 200px;
+        }
+
+        &.vine {
+          iframe {
+            width: 450px;
+          }
+        }
+
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 1.4em;
+        padding-top: 20px;
+        text-align: right;
+      }
+
+      h2 {
+        font-size: 1.2em;
+        text-align: right;
+        padding-top: 1em;
+      }
+
+      ul, ol {
+        margin-right: 1.5em;
+        list-style-type: none;
+        padding-top: 0;
+
+        li {
+          margin-top: 1em;
+          position: relative;
+
+          &:before {
+            position: absolute;
+            top: 0;
+            width: 0.8em;
+            font-size: 1.8em;
+            color: rgba(0, 0, 0, 0.3);
+          }
+        }
+      }
+
+      ul {
+        li {
+          &:before{
+            content: '\2022';
+            right: -0.9em;
+            line-height: 1.2em;
+          }
+        }
+      }
+
+      ol {
+        counter-reset: li-counter;
+
+        li {
+          margin-top: 1.5em;
+
+          &:before {
+            right: -1em;
+            width: 0.8em;
+
+            line-height: 1;
+            font-weight: bold;
+            text-align: right;
+
+            content: counter(li-counter);
+            counter-increment: li-counter;
+          }
+        }
+      }
+
+      h3 {
+        font-size: 1.5em;
+      }
+
+      a {
+        border-bottom: 1px solid black;
+        color: #333332;
+      }
+
+    }
+
+    .article-actions {
+      text-align: center;
+      margin: 2em 0 .5em 0;
+    }
+
+  }
+
+}
+
+.tray {
+  padding: 0 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}

@@ -53,7 +53,7 @@ angular.module('manshar')
       views: {
         'menuContent': {
           templateUrl: 'templates/articles/show.html',
-          //controller: 'PlaylistCtrl'
+          controller: 'ArticleCtrl'
         }
       }
     })

@@ -1,6 +1,21 @@
-<ion-view view-title="template">
+<ion-view view-title="{{article.title}}">
   <ion-content>
-    <h1>Show</h1>
+  <header class="article-header" ng-class="{'nocover': !article.cover_url}">
+    <div class="cover-image" manshar-cover url="{{article.cover_url}}">
+    </div>
+    <div class="dimmer" ng-show="article.cover_url"></div>
+    <div class="title tray">
+      <span class="reading-time" ng-hide="article.loading"> {{article.reading_time | timeToRead }}
+      </span>
+      <h1>{{article.title}}</h1>
+      <h2>{{article.tagline}}</h2>
+    </div>
+  </header>
+    <div class="manshar-article">
+      <div class="article-container">
+        <article id="article-body" ng-bind-html="article.body | mansharSanitizer" highlight-code></article>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
 
