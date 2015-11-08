@@ -10,6 +10,7 @@ angular.module('manshar',
     'manshar.controllers',
     'manshar.services',
     'manshar.filters',
+    'manshar.derectivs',
     'AppConfig',
     'ng-token-auth'])
 
