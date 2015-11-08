@@ -1,6 +1,6 @@
 angular.module('manshar.controllers', [])
 
-.controller('MainCtrl', function($scope,Article,User,$ionicSideMenuDelegate) {
+.controller('MainCtrl', function($scope,Article,User) {
     $scope.order = 'popular';
     //TODO loading style
     $scope.articles = [{loading:true},{loading:true}];
@@ -31,6 +31,6 @@ angular.module('manshar.controllers', [])
       return color || '#C0C0C0';
     };
     $scope.showCategoriesPicker = function(){
-      $ionicSideMenuDelegate.toggleLeft();
+      $scope.$emit('openCategoryMenuSide', {pickOnlyCategory: true});
     }
 });

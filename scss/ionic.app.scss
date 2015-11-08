@@ -439,5 +439,9 @@ ul.cards-list-container {
     }
   }
 }
-
+.left-side-menu{
+  ion-item{
+    border-color: lighten($assertive, 55%);
+  }
+}
 

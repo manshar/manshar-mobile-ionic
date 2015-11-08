@@ -13,9 +13,9 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="right">
+  <ion-side-menu side="right" width="200" class="right-side-menu">
     <ion-content>
-      <ion-list class="right-side-menu">
+      <ion-list>
         <div ng-if="me"  class="assertive-border profile" menu-close ng-click="login()">
           <div class="avatar" manshar-cover url="me.avatar_uid"></div>
           <div class="title">
@@ -51,8 +51,8 @@
       </ion-list>
     </ion-content>
   </ion-side-menu>
-  <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
+  <ion-side-menu side="left" width="200" class="left-side-menu">
+    <ion-header-bar class="bar-assertive">
       <h1 class="title">إخر فئة</h1>
 
 
@@ -60,11 +60,9 @@
 
     <ion-content>
       <ion-list>
-        <ion-item menu-close>
-          الفئة 1
-        </ion-item>
-        <ion-item menu-close>
-          الفئة 2
+        <ion-item class="item-icon-right" style="color:{{category.color}};" ng-repeat="category in categories track by category.id" menu-close>
+          <span class="icon {{category.icon_cssclass}}"></span>
+          {{category.title}}
         </ion-item>
       </ion-list>
     </ion-content>

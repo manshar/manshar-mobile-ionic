@@ -4,7 +4,7 @@ angular.module('manshar.services')
   .service('Category', ['$resource', '$http', '$q', 'API_HOST',
       function ($resource, $http, $q, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var CategoryResource = $resource(baseUrl + 'categories/:categoryId', {}, {
         get: {cache: true},
         query: {cache: true, isArray: true}

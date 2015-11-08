@@ -1,6 +1,6 @@
 angular.module('manshar')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,LoginService) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,LoginService,Category,$ionicSideMenuDelegate) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -82,4 +82,9 @@ angular.module('manshar')
       }
       $scope.flash = null;*/
     };
+
+    $scope.$on('openCategoryMenuSide',function(){
+      $scope.categories = Category.query();
+      $ionicSideMenuDelegate.toggleLeft();
+    })
 })
