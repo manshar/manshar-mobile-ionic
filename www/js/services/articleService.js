@@ -5,7 +5,7 @@ angular.module('manshar.services')
       function ($resource, $http, $q, $cacheFactory, API_HOST) {
 
       var $httpDefaultCache = $cacheFactory.get('$http');
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var ArticleResource = $resource(baseUrl + 'articles/:articleId', {}, {
         get: {cache: true},
         query: {cache: true, isArray: true}

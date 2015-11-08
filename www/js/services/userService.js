@@ -12,7 +12,7 @@ angular.module('manshar.services')
       function ($rootScope, $resource, $http, $cacheFactory, API_HOST) {
 
       var $httpDefaultCache = $cacheFactory.get('$http');
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var UserResource = $resource(baseUrl + 'users/:userId', {}, {
         update: {method: 'PUT'},
         get: {cache: true},
