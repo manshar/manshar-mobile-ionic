@@ -1,6 +1,6 @@
-angular.module('manshar.controllers', [])
+angular.module('manshar')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,LoginService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -25,18 +25,61 @@ angular.module('manshar.controllers', [])
   };
 
   // Open the login modal
-  $scope.login = function() {
+  $scope.ShowloginModal = function() {
     $scope.modal.show();
   };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-
+    LoginService.login({"email":"ali@soufnet.com","password":"198328inf"}, success, error);
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    $timeout(function() {
+    /*$timeout(function() {
       $scope.closeLogin();
-    }, 1000);
+    }, 1000);*/
   };
+    $scope.$on('auth:login-success', function(event, response) {
+      alert('auth:login-success')
+      console.log('response.data', response );
+      $scope.me=response;
+      $scope.modal.hide();
+    });
+    var success = function(user) {
+
+     alert('success')
+    /*  $analytics.eventTrack('Login Success', {
+        category: 'User'
+      });
+      if ($scope.isLoginPage) {
+        $location.path($routeParams.prev || '/profiles/' + user.id)
+          // Remove the prev param when redirecting.
+          .search('prev', null);
+      }*/
+    };
+
+    var error = function(response) {
+      console.log('response', response);
+      alert(response.reason)
+   /*
+      $analytics.eventTrack('Login Error', {
+        category: 'User',
+        label: angular.toJson(response.errors)
+      });
+
+      // TODO(mkhatib): This is pretty ugly. Clean it up and move strings into
+      // a constant file definition.
+      var confirmationMessage = 'A confirmation email was sent to your account';
+      var invalidMessage = 'credentials';
+      var message = response.errors && response.errors[0] || '';
+      if (message.indexOf(confirmationMessage) !== -1) {
+        $scope.error = 'يجب عليك تفعيل حسابك. تم إرسال رسالة لبريدك الإلكتروني. تأكد من فحص مجلد السبام.';
+        $scope.nonConfirmed = true;
+      } else if (message.indexOf(invalidMessage) !== -1) {
+        $scope.error = 'خطأ في البريد الالكتروني أو كلمة المرور';
+      } else {
+        $scope.error = response.errors[0] || 'حدث خطأ ما. الرجاء المحاولة مرة أخرى';
+      }
+      $scope.flash = null;*/
+    };
 })

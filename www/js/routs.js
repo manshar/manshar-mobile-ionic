@@ -7,7 +7,7 @@ angular.module('manshar')
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
-      //controller: 'AppCtrl'
+      controller: 'AppCtrl'
     })
 
     .state('app.articles', {

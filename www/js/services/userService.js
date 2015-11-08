@@ -77,7 +77,7 @@ angular.module('manshar.services')
   .service('UserDraft', ['$resource', 'API_HOST',
       function ($resource, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var UserDraftResource = $resource(baseUrl + 'me/drafts', {}, {
         get: {cache: true},
         query: {cache: true, isArray: true}
