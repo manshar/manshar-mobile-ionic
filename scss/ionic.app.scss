@@ -17,6 +17,7 @@ $assertive:                       #ca1504 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+$font-family-base: "Droid Arabic Naskh", serif !important;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
@@ -393,8 +394,8 @@ ul.cards-list-container {
       width: 100%;
       height: 200px;
       box-shadow: 0 1px 5px -1px;
-      filter: blur(14px) brightness(0.75);
-      -webkit-filter: blur(5px) brightness(0.75);
+      filter: blur(9px) brightness(0.75);
+      -webkit-filter: blur(9px) brightness(0.75);
       &.blured{
         display: none;
       }
