@@ -45,6 +45,7 @@ angular.module('manshar',
 .config(function($authProvider, API_HOST,$ionicConfigProvider) {
   $authProvider.configure({
     apiUrl: 'http://' + API_HOST,
+    storage:'localStorage'
     //confirmationSuccessUrl:  'http://' + window.location.host + '/login',
     //passwordResetSuccessUrl: ('http://' + window.location.host +'/accounts/update_password'),
     //authProviderPaths: {
@@ -56,4 +57,43 @@ angular.module('manshar',
     //change go back text and icon
     $ionicConfigProvider.backButton.text('رجوع').icon('ion-chevron-right');
 })
+
+/**
+ * Intercept every http request and check for 401 Unauthorized
+ * error. Clear the current user and redirect to /login page.
+ */
+  .config(['$httpProvider', '$locationProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('unAuthenticatedInterceptor');
+    $httpProvider.defaults.headers.common['Accept-Encoding'] = 'gzip';
+
+  }])
+
+.factory('unAuthenticatedInterceptor', ['$location', '$q', '$rootScope',
+  function ($location, $q, $rootScope) {
+    return {
+      'request': function(config) {
+        return config;
+      },
+
+      'requestError': function(response) {
+        console.error(response);
+      },
+
+      'response': function(response) {
+        return response;
+      },
+
+      'responseError': function(response) {
+        if (response.status === 401) {
+          var previous = $location.path();
+          $rootScope.$broadcast('showLoginDialog', {'prev': previous});
+          return $q.reject(response);
+        }
+        else {
+          return $q.reject(response);
+        }
+      }
+    };
+  }])
+
 ;

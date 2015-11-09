@@ -1,10 +1,42 @@
 angular.module('manshar')
 
 .config(function($stateProvider, $urlRouterProvider) {
+
+    /**
+     * Checks proper access to the route and reject it if unauthenticated.
+     */
+    var checkAccess = {
+      load: ['$q', '$location', '$rootScope', '$auth', '$state', 'LoginService',
+        function($q, $location, $rootScope, $auth, $state, LoginService) {
+
+          var isPublic = $state.data.isPublic;
+          var isAdmin = $state.data.isAdmin;
+          var deferred = $q.defer();
+          var callback = function() {
+
+            if(LoginService.isAuthorized(isPublic, isAdmin)) {
+              deferred.resolve();
+            } else {
+              deferred.reject();
+              $rootScope.$broadcast('showLoginDialog', {
+                'prev': $location.path()
+              });
+            }
+          };
+          $auth.validateUser().then(callback, callback);
+          return deferred.promise;
+        }]
+    };
+
   $stateProvider
 
     .state('app', {
       url: '/app',
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
+      /*resolve:checkAccess,*/
       abstract: true,
       templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
@@ -12,7 +44,10 @@ angular.module('manshar')
 
     .state('app.articles', {
       url: '/main',
-
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/main.html',
@@ -32,6 +67,10 @@ angular.module('manshar')
 
     .state('app.articlesnew', {
       url: '/article/new',
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/articles/edit.html'
@@ -40,6 +79,10 @@ angular.module('manshar')
     })
     .state('app.articlesedite', {
       url: '/article/:articleId/edit',
+      data:{
+        isPublic:false,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/articles/edit.html',
@@ -50,6 +93,10 @@ angular.module('manshar')
 
     .state('app.article', {
       url: '/article/:articleId',
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/articles/show.html',
@@ -59,6 +106,10 @@ angular.module('manshar')
     })
     .state('app.profile', {
       url: '/profile/:userId',
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/profile/show.html',
@@ -68,6 +119,10 @@ angular.module('manshar')
     })
     .state('app.profileEdit', {
       url: '/profile/:userId/edit',
+      data:{
+        isPublic:false,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/profile/edit.html',
@@ -77,6 +132,10 @@ angular.module('manshar')
     })
     .state('app.categories', {
       url: '/categories',
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/categories/List.html',
@@ -86,6 +145,10 @@ angular.module('manshar')
     })
     .state('app.category', {
       url: '/category/:categoryId',
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/categories/category.html',
@@ -95,6 +158,10 @@ angular.module('manshar')
     })
     .state('app.topic', {
       url: '/categories/:categoryId/topics/:topicId',
+      data:{
+        isPublic:true,
+        isAdmin:false
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/categories/topic.html',

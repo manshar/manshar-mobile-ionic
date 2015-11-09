@@ -2,6 +2,23 @@ angular.module('manshar')
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout,LoginService,Category,$ionicSideMenuDelegate) {
 
+    $scope.me={
+      name:'منشر',
+      avatar_uid:'https://d32rdl4awdotlf.cloudfront.net/images/7412f9c6.manshar@64x64.png',
+      statu:'logout'
+    }
+    $scope.$on('auth:logout-success', function(event, response) {
+
+      $scope.me={
+        name:'منشر',
+          avatar_uid:'https://d32rdl4awdotlf.cloudfront.net/images/7412f9c6.manshar@64x64.png',
+        statu:'logout'
+      }
+
+    });
+    $scope.logout = function () {
+      LoginService.logout();
+    };
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -10,7 +27,10 @@ angular.module('manshar')
   //});
 
   // Form data for the login modal
-  $scope.loginData = {};
+  $scope.loginData = {
+    username:'ali@soufnet.com',
+    password:'198328inf'
+  };
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/partials/_login_form.html', {
@@ -31,7 +51,7 @@ angular.module('manshar')
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+
     LoginService.login({"email":"ali@soufnet.com","password":"198328inf"}, success, error);
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
@@ -40,14 +60,15 @@ angular.module('manshar')
     }, 1000);*/
   };
     $scope.$on('auth:login-success', function(event, response) {
-      alert('auth:login-success')
-      console.log('response.data', response );
+
       $scope.me=response;
+      $scope.me.avatar_uid='http://manshar.s3.amazonaws.com/'+$scope.me.avatar_uid,
+        $scope.me.statu='login'
       $scope.modal.hide();
     });
     var success = function(user) {
 
-     alert('success')
+
     /*  $analytics.eventTrack('Login Success', {
         category: 'User'
       });
