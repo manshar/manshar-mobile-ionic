@@ -1,6 +1,6 @@
 angular.module('manshar')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,LoginService,Category,$ionicSideMenuDelegate) {
+.controller('AppCtrl', function($scope,$rootScope, $ionicModal, $timeout,LoginService,Category,$ionicSideMenuDelegate) {
 
     $scope.me={
       name:'منشر',

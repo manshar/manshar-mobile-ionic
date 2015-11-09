@@ -16,17 +16,17 @@
   <ion-side-menu side="right" width="200" class="right-side-menu">
     <ion-content>
       <ion-list>
-        <div ng-if="me"  class="assertive-border profile" menu-close ng-click="ShowloginModal()">
+        <div ng-if="user"  class="assertive-border profile" menu-close ng-click="ShowloginModal()">
           <div class="avatar" manshar-cover url="me.avatar_uid">
 
           </div>
           <div class="title">
-            <img ng-src="{{me.avatar_uid}}" alt=""/>
-            <h3 style="margin: 2px;font-size: 14px">{{me.name}}</h3>
+            <img ng-src="{{user.avatar_uid}}" alt=""/>
+            <h3 style="margin: 2px;font-size: 14px">{{user.name}}</h3>
           </div>
         </div>
 
-        <ion-item  ng-if="me.statu=='logout'" class="item-icon-right" menu-close ng-click="ShowloginModal()">
+        <ion-item  ng-if="user" class="item-icon-right" menu-close ng-click="ShowloginModal()">
           <i class="icon ion-email"></i>
           تسجيل الدخول
         </ion-item>
@@ -50,14 +50,11 @@
           <i class="icon ion-ionic"></i>
           شروط الإستخدام
         </ion-item>
-        <ion-item   ng-if="me.statu=='login'"  class="item-icon-right" menu-close  menu-close ng-click="logout()">
+        <ion-item   ng-if="!user"  class="item-icon-right" menu-close  menu-close ng-click="logout()">
           <i class="icon ion-ionic"></i>
        تسجيل الخروج
         </ion-item>
-        <ion-item     class="item-icon-right" menu-close  menu-close ">
-          <i class="icon ion-ionic"></i>
-          {{me.avatar_uid}}
-        </ion-item>
+        
 
       </ion-list>
     </ion-content>

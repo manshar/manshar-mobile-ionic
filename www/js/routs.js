@@ -9,12 +9,13 @@ angular.module('manshar')
       load: ['$q', '$location', '$rootScope', '$auth', '$state', 'LoginService',
         function($q, $location, $rootScope, $auth, $state, LoginService) {
 
-          var isPublic = $state.data.isPublic;
-          var isAdmin = $state.data.isAdmin;
+          var isPublic = $state.current.data.isPublic;
+          var isAdmin = $state.current.data.isAdmin;
           var deferred = $q.defer();
           var callback = function() {
 
             if(LoginService.isAuthorized(isPublic, isAdmin)) {
+              console.log('$rootScope.user', $rootScope.user);
               deferred.resolve();
             } else {
               deferred.reject();
