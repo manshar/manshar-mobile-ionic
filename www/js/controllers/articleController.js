@@ -1,6 +1,6 @@
-angular.module('manshar.controllers', [])
+angular.module('manshar')
 
-.controller('ArticleCtrl', function($scope,Article,$stateParams,$filter) {
+.controller('ArticleCtrl', function($scope,Article,$stateParams) {
     Article.get({'articleId': $stateParams.articleId},
       function(resource) {
         /* jshint camelcase: false */

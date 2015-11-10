@@ -109,7 +109,7 @@ angular.module('manshar',
 
 .config(function($authProvider, API_HOST,$ionicConfigProvider) {
   $authProvider.configure({
-    apiUrl: 'http://api.manshar.com',
+    apiUrl: 'http://'+API_HOST,
     proxyIf:                 function() { return true; },
     proxyUrl:                'http://'+API_HOST,
     storage:'localStorage'
