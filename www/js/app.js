@@ -13,7 +13,72 @@ angular.module('manshar',
     'AppConfig',
     'ng-token-auth'])
 
-.run(function($ionicPlatform,LoginService) {
+.run(function($ionicPlatform,LoginService,$rootScope,$auth,$location,$q) {
+
+
+    var checkAccess = function(event, next, current) {
+
+      /**
+       * First load to the AngularJS the user might have not been loaded
+       * so need to call the callback after validateUser promise is resolved.
+       */
+      var firstLoadCallback = function() {
+        if (!LoginService.isAuthorized(next.isPublic, next.isAdmin)) {
+          $location.path('/login').search('prev', $location.path());
+        }
+      };
+
+      // If this is the first load of the site.
+      if(!current) {
+        $auth.validateUser().then(firstLoadCallback, firstLoadCallback);
+      }
+      else if(!LoginService.isAuthorized(next.isPublic, next.isAdmin)) {
+        event.preventDefault();
+        // Show the dialog instead of redirecting for all navigations.
+        // Except first time landing on the site on protected page.
+        if (current) {
+          $rootScope.$broadcast('showLoginDialog', {
+            'prev': $location.path()
+          });
+        }
+      }
+    };
+
+    /**
+     * If the route to be accessed is private make sure the user is authenticated
+     * otherwise, broadcast 'showLoginDialog' to show login modal.
+     */
+    $rootScope.$on('$stateChangeStart11', function(event, next, current) {
+      checkAccess(event, next, current);
+    });
+
+
+
+    $rootScope.checkAccess = $q.defer();
+    $rootScope.checkAccess.promise.then(function(){
+
+    },function(){
+
+    })
+
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams){
+        var isPublic = toState.data.isPublic;
+        var isAdmin = toState.data.isAdmin;
+        var callback = function() {
+
+          if(LoginService.isAuthorized(isPublic, isAdmin)) {
+            console.log('$rootScope.user', $rootScope.user);
+            $rootScope.checkAccess.resolve();
+          } else {
+
+            $rootScope.$broadcast('showLoginDialog', {
+              'prev': $location.path()
+            });
+          }
+        };
+        $auth.validateUser().then(callback, callback);
+      })
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -44,9 +109,11 @@ angular.module('manshar',
 
 .config(function($authProvider, API_HOST,$ionicConfigProvider) {
   $authProvider.configure({
-    apiUrl: 'http://' + API_HOST,
+    apiUrl: 'http://api.manshar.com',
+    proxyIf:                 function() { return true; },
+    proxyUrl:                'http://'+API_HOST,
     storage:'localStorage'
-    //confirmationSuccessUrl:  'http://' + window.location.host + '/login',
+    //confirmationSuccessUrl:  'http://' + window.location.host + '/login',http://api.manshar.com
     //passwordResetSuccessUrl: ('http://' + window.location.host +'/accounts/update_password'),
     //authProviderPaths: {
     //  facebook: '/auth/facebook',

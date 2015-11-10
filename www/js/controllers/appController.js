@@ -1,19 +1,12 @@
 angular.module('manshar')
 
-.controller('AppCtrl', function($scope,$rootScope, $ionicModal, $timeout,LoginService,Category,$ionicSideMenuDelegate) {
+.controller('AppCtrl', function($scope,$rootScope, $ionicModal,
+                                $state,$timeout,LoginService,Category,$ionicSideMenuDelegate,$stateParams) {
 
-    $scope.me={
-      name:'منشر',
-      avatar_uid:'https://d32rdl4awdotlf.cloudfront.net/images/7412f9c6.manshar@64x64.png',
-      statu:'logout'
-    }
+
     $scope.$on('auth:logout-success', function(event, response) {
 
-      $scope.me={
-        name:'منشر',
-          avatar_uid:'https://d32rdl4awdotlf.cloudfront.net/images/7412f9c6.manshar@64x64.png',
-        statu:'logout'
-      }
+
 
     });
     $scope.logout = function () {
@@ -31,7 +24,10 @@ angular.module('manshar')
     username:'ali@soufnet.com',
     password:'198328inf'
   };
+    $scope.Showprofile = function () {
 
+      $state.go('app.profile',{userId:''})
+    };
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/partials/_login_form.html', {
     scope: $scope
@@ -42,13 +38,18 @@ angular.module('manshar')
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
+
+      $rootScope.checkAccess.reject();
+
   };
 
   // Open the login modal
   $scope.ShowloginModal = function() {
     $scope.modal.show();
   };
-
+    $rootScope.$on('showLoginDialog', function(event, response) {
+      $scope.modal.show();
+    })
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
 
@@ -68,20 +69,20 @@ angular.module('manshar')
     });
     var success = function(user) {
 
-
+      $rootScope.checkAccess.resolve();
     /*  $analytics.eventTrack('Login Success', {
         category: 'User'
-      });
-      if ($scope.isLoginPage) {
-        $location.path($routeParams.prev || '/profiles/' + user.id)
+      });*/
+      if ($stateParams.prev) {
+        $location.path($stateParams.prev)
           // Remove the prev param when redirecting.
           .search('prev', null);
-      }*/
+      }
     };
 
     var error = function(response) {
       console.log('response', response);
-      alert(response.reason)
+
    /*
       $analytics.eventTrack('Login Error', {
         category: 'User',

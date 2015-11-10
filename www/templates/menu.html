@@ -16,7 +16,7 @@
   <ion-side-menu side="right" width="200" class="right-side-menu">
     <ion-content>
       <ion-list>
-        <div ng-if="user"  class="assertive-border profile" menu-close ng-click="ShowloginModal()">
+        <div ng-if="user"  class="assertive-border profile" menu-close ng-click="Showprofile()">
           <div class="avatar" manshar-cover url="me.avatar_uid">
 
           </div>
@@ -26,7 +26,7 @@
           </div>
         </div>
 
-        <ion-item  ng-if="user" class="item-icon-right" menu-close ng-click="ShowloginModal()">
+        <ion-item  ng-if="!user.signedIn" class="item-icon-right" menu-close ng-click="ShowloginModal()">
           <i class="icon ion-email"></i>
           تسجيل الدخول
         </ion-item>
@@ -34,7 +34,7 @@
           <i class="icon ion-bookmark"></i>
           المحفوضات
         </ion-item>
-        <ion-item class="item-icon-right" menu-close>
+        <ion-item class="item-icon-right" menu-close ng-click="Showprofile()">
           <i class="icon ion-android-notifications"></i>
           التنبيهات
         </ion-item>
@@ -50,11 +50,11 @@
           <i class="icon ion-ionic"></i>
           شروط الإستخدام
         </ion-item>
-        <ion-item   ng-if="!user"  class="item-icon-right" menu-close  menu-close ng-click="logout()">
+        <ion-item   ng-if="user.signedIn"  class="item-icon-right" menu-close  menu-close ng-click="logout()">
           <i class="icon ion-ionic"></i>
        تسجيل الخروج
         </ion-item>
-        
+
 
       </ion-list>
     </ion-content>

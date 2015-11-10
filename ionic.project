@@ -1,4 +1,14 @@
 {
   "name": "myApp",
-  "app_id": ""
+  "app_id": "",
+  "proxies": [
+      {
+        "path": "/api",
+        "proxyUrl": "http://api.manshar.com/api"
+      },
+      {
+                "path": "/auth",
+                "proxyUrl": "http://api.manshar.com/auth"
+              }
+    ]
 }
