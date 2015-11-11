@@ -30,6 +30,10 @@
           <i class="icon ion-email"></i>
           تسجيل الدخول
         </ion-item>
+        <ion-item  ng-if="user.signedIn"  class="item-icon-right" menu-close ng-click="Showprofile()">
+          <i class="icon ion-android-notifications"></i>
+          ملفي الشخصي
+        </ion-item>
         <ion-item class="item-icon-right" menu-close>
           <i class="icon ion-bookmark"></i>
           المحفوضات

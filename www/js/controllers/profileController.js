@@ -3,6 +3,7 @@
  */
 angular.module('manshar.controllers', [])
 
-  .controller('ProfileCtrl', function($scope,Article,$stateParams,$filter) {
-
+  .controller('ProfileCtrl', function($scope,Article,$stateParams,$filter,load) {
+alert($stateParams.userId)
+    console.log('loadload', load);
   });

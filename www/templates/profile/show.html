@@ -1,6 +1,15 @@
 <ion-view view-title="template">
   <ion-content>
     <h1>Profile Show</h1>
+    <div ng-if="user"  class="assertive-border profile" menu-close ng-click="Showprofile()">
+      <div class="avatar" manshar-cover url="me.avatar_uid">
+
+      </div>
+      <div class="title">
+        <img ng-src="{{user.avatar_uid}}" alt=""/>
+        <h3 style="margin: 2px;font-size: 14px">{{user.name}}</h3>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
 

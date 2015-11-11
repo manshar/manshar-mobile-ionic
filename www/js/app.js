@@ -54,14 +54,10 @@ angular.module('manshar',
 
 
 
-    $rootScope.checkAccess = $q.defer();
-    $rootScope.checkAccess.promise.then(function(){
 
-    },function(){
 
-    })
 
-    $rootScope.$on('$stateChangeStart',
+    $rootScope.$on('$stateChangeStart11',
       function(event, toState, toParams, fromState, fromParams){
         var isPublic = toState.data.isPublic;
         var isAdmin = toState.data.isAdmin;
@@ -78,6 +74,7 @@ angular.module('manshar',
           }
         };
         $auth.validateUser().then(callback, callback);
+
       })
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

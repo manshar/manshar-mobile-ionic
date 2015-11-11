@@ -26,28 +26,38 @@ angular.module('manshar')
   };
     $scope.Showprofile = function () {
 
-      $state.go('app.profile',{userId:''})
+      $state.go('app.profile',{userId:$rootScope.user.id})
     };
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/partials/_login_form.html', {
     scope: $scope
   }).then(function(modal) {
+
     $scope.modal = modal;
-  });
+  },function(modal){
+
+
+    }
+
+  );
 
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
+    if($scope.modal.deferred)
+    {
 
-      $rootScope.checkAccess.reject();
-
+      $scope.modal.deferred.reject();
+    }
   };
 
   // Open the login modal
   $scope.ShowloginModal = function() {
     $scope.modal.show();
   };
-    $rootScope.$on('showLoginDialog', function(event, response) {
+    $rootScope.$on('showLoginDialog', function(event, deferred) {
+      if(deferred)
+        $scope.modal.deferred=deferred;
       $scope.modal.show();
     })
   // Perform the login action when the user submits the login form
@@ -69,15 +79,20 @@ angular.module('manshar')
     });
     var success = function(user) {
 
-      $rootScope.checkAccess.resolve();
+      if($scope.modal.deferred)
+      {
+
+        $scope.modal.deferred.resolve();
+      }
+    //  $rootScope.checkAccess.resolve();
     /*  $analytics.eventTrack('Login Success', {
         category: 'User'
       });*/
-      if ($stateParams.prev) {
+     /* if ($stateParams.prev) {
         $location.path($stateParams.prev)
           // Remove the prev param when redirecting.
           .search('prev', null);
-      }
+      }*/
     };
 
     var error = function(response) {

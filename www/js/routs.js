@@ -6,8 +6,9 @@ angular.module('manshar')
      * Checks proper access to the route and reject it if unauthenticated.
      */
     var checkAccess = {
-      load: ['$q', '$location', '$rootScope', '$auth', '$state', 'LoginService',
+      load: ['$q', '$location', '$rootScope', '$auth', '$state','LoginService',
         function($q, $location, $rootScope, $auth, $state, LoginService) {
+
 
           var isPublic = $state.current.data.isPublic;
           var isAdmin = $state.current.data.isAdmin;
@@ -29,7 +30,9 @@ angular.module('manshar')
         }]
     };
 
+
   $stateProvider
+
 
     .state('app', {
       url: '/app',
@@ -98,6 +101,7 @@ angular.module('manshar')
         isPublic:true,
         isAdmin:false
       },
+    /*  resolve:checkAccess,*/
       views: {
         'menuContent': {
           templateUrl: 'templates/articles/show.html',
@@ -108,13 +112,36 @@ angular.module('manshar')
     .state('app.profile', {
       url: '/profile/:userId',
       data:{
-        isPublic:true,
+        isPublic:false,
         isAdmin:false
+      },
+      resolve:{
+        load: ['$q', '$location', '$rootScope', '$auth', '$state','LoginService',
+          function($q, $location, $rootScope, $auth, $state, LoginService) {
+            var isPublic =false;// $state.current.data.isPublic;
+            var isAdmin =false;// $state.current.data.isAdmin;
+            var deferred = $q.defer();
+            var callback = function() {
+
+              if(LoginService.isAuthorized(isPublic, isAdmin)) {
+                console.log('$rootScope.user', $rootScope.user);
+                deferred.resolve();
+              } else {
+               // deferred.reject();
+                /*$rootScope.$broadcast('showLoginDialog', {
+                  'prev': $location.path()
+                });*/
+                $rootScope.$broadcast('showLoginDialog',deferred);
+              }
+            };
+            $auth.validateUser().then(callback, callback);
+            return deferred.promise;
+          }]
       },
       views: {
         'menuContent': {
           templateUrl: 'templates/profile/show.html',
-          // controller: 'PlaylistCtrl'
+           controller: 'ProfileCtrl'
         }
       }
     })
