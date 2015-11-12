@@ -154,7 +154,7 @@ angular.module('manshar')
       views: {
         'menuContent': {
           templateUrl: 'templates/profile/edit.html',
-          // controller: 'PlaylistCtrl'
+           controller: 'EditProfileCtrl'
         }
       }
     })

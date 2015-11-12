@@ -40,7 +40,9 @@ angular.module('manshar')
     }
 
   );
-
+    $scope.getCardColor = function(color) {
+      return color || '#C0C0C0';
+    };
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();

@@ -43,7 +43,8 @@ angular.module('manshar',
         }
       }
     };
-
+    $rootScope.page={
+      title:'منشر'};
     /**
      * If the route to be accessed is private make sure the user is authenticated
      * otherwise, broadcast 'showLoginDialog' to show login modal.

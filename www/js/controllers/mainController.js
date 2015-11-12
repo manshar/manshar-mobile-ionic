@@ -27,9 +27,7 @@ angular.module('manshar')
         $scope.hasNext = true;
       });
     };
-    $scope.getCardColor = function(color) {
-      return color || '#C0C0C0';
-    };
+
     $scope.showCategoriesPicker = function(){
       $scope.$emit('openCategoryMenuSide', {pickOnlyCategory: true});
     }

@@ -1,6 +1,18 @@
-<ion-view view-title="template">
+<ion-view view-title="<i class='fa fa-pencil'></i> {{profile.name}}">
   <ion-content>
-    <h1>edit Profile</h1>
+    <div class="form-div">
+      <div ng-include="'templates/partials/_form_header.html'"></div>
+      <div class="form-errors" ng-show="error">
+        <ul>
+          <li ng-repeat="(key, data) in errorMessages">{{key}} {{data}}</li>
+        </ul>
+      </div>
+      <form id="signup-form" name="signupForm" ng-submit="updateUserData(profile)">
+        <div ng-include="'templates/partials/_user_form.html'"></div>
+
+        <button type="submit">حفظ التعديلات</button>
+      </form>
+    </div>
   </ion-content>
 </ion-view>
 

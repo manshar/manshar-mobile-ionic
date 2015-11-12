@@ -1,14 +1,109 @@
-<ion-view view-title="template">
+<ion-view view-title="">
   <ion-content>
-    <h1>Profile Show</h1>
-    <div ng-if="user"  class="assertive-border profile" menu-close ng-click="Showprofile()">
-      <div class="avatar" manshar-cover url="me.avatar_uid">
+
+
+
+    <div  class="assertive-border manshar-profile" menu-close ng-click="Showprofile()">
+     <!-- <div class="avatar" manshar-cover url="{{page.image}}">
+
+
+      </div>-->
+      <div class="title">
+       <!-- <img ng-src="http://manshar.s3.amazonaws.com/{{user.avatar_uid}}" alt=""/>-->
+        <img ng-src="{{page.avatar}}" alt="" />
+        <a class=" " ng-click="editProfile()" ng-show="user.id == profile.id" href="#/app/profile/{{user.id}}/edit">
+          <i class="fa fa-pencil"></i>
+          تعديل الملف الشخصي
+        </a>
+        <div><h3 style="">
+          {{page.title}}
+
+        </h3></div>
+        <div><h3 style="">{{profile.bio}}</h3></div>
 
       </div>
-      <div class="title">
-        <img ng-src="{{user.avatar_uid}}" alt=""/>
-        <h3 style="margin: 2px;font-size: 14px">{{user.name}}</h3>
+
+      <!--<div class="tabs-striped tabs-top tabs-background-light tabs-color-assertive">
+        <div class="tabs"  style="">
+          <a class="tab-item" ng-click="loadArticles()" ng-class="{'active': activeTab == 'published'}"  >
+            <i class="icon fa-line-chart"></i>
+            المنشورات
+          </a>
+          <a class="tab-item" ng-click="loadRecommendations()" ng-class="{'active': activeTab == 'recommendations'}" >
+            <i class="icon fa-thumbs-o-up"></i>
+            التوصيات
+          </a>
+          <a class="tab-item" ng-click="loadDiscussions()" ng-class="{'active': activeTab == 'discussions'}"  >
+            <i class="icon fa-clock-o"></i>
+            المناقشات
+          </a>
+
+        </div>
+      </div>-->
+    </div>
+    <div class="listing-types-tabs profile-tabs">
+
+      <a ng-click="loadArticles()" ng-class="{'active': activeTab == 'published'}" class="active">
+        <i class="icon fa-line-chart"></i>
+        المنشورات
+
+      </a>
+      <a ng-click="loadRecommendations()" ng-class="{'active': activeTab == 'recommendations'}">
+        <i class="fa fa-thumbs-o-up"></i>
+        التوصيات
+
+      </a>
+      <a ng-click="loadDiscussions()" ng-class="{'active': activeTab == 'discussions'}">
+        <i class="icon ion-chatbubbles"></i>
+        المناقشات
+
+
+      </a>
+    </div>
+
+
+    <div class="profile-list">
+
+      <a  class="button button-float" nav-direction="back" href="/articles/new" class="write-new-button" ng-show="user.id == profile.id">
+        <i class="fa fa-pencil"></i>
+
+      </a>
+
+      <div ng-show="!articles[0]" class="no-articles-container">
+        <h3 ng-show="activeTab == 'published'">لا يوجد أي منشورات</h3>
+        <h3 ng-show="activeTab == 'recommendations'">لا يوجد أي توصيات</h3>
+        <h3 ng-show="activeTab == 'discussions'">لا يوجد أي مناقشات</h3>
+        <h4>
+          <a href="/">تصفح أشهر المقالات</a>
+        </h4>
       </div>
+      <ul class="cards-list-container one-column card-list" ng-show="drafts[0] && user.id == profile.id && activeTab == 'published'">
+        <h1 class="header-label">
+          <span>المسودات</span>
+        </h1>
+        <li ng-repeat="article in drafts" class="card draft">
+          <div class="article-details article-card">
+            <div class="header tray">
+              <div class="title">
+                <a ng-href="/articles/{{article.id}}">
+                  <h1>{{article.title || "بدون عنوان"}}</h1>
+                  <h2>{{article.tagline}}</h2>
+                </a>
+              </div>
+            </div>
+            <div class="profile-article-action" ng-show="isOwner(user, article)">
+              <button class="action-button" ng-click="deleteArticle(article)" ng-if="article.id" ng-disabled="inProgress" ng-class="{'in-progress': inProgress == 'delete'}">
+                <i class="fa fa-trash-o"></i>
+              </button>
+              <button class="action-button" ng-click="editArticle(article.id)">
+                <i class="fa fa-pencil"></i>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div ng-include="'templates/partials/_articles_list.html'"></div>
+
     </div>
   </ion-content>
 </ion-view>
