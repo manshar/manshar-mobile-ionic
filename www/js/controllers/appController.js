@@ -28,6 +28,10 @@ angular.module('manshar')
 
       $state.go('app.profile',{userId:$rootScope.user.id})
     };
+
+    $scope.showCategory = function (categoryId) {
+      $state.go('app.category',{categoryId:categoryId})
+    };
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/partials/_login_form.html', {
     scope: $scope
@@ -40,6 +44,9 @@ angular.module('manshar')
     }
 
   );
+    $scope.Showhome = function () {
+      $state.go('app.articles')
+    };
     $scope.getCardColor = function(color) {
       return color || '#C0C0C0';
     };
@@ -123,6 +130,7 @@ angular.module('manshar')
     };
 
     $scope.$on('openCategoryMenuSide',function(){
+
       $scope.categories = Category.query();
       $ionicSideMenuDelegate.toggleLeft();
     })

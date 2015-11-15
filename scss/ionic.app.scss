@@ -751,6 +751,103 @@ ul.cards-list-container {
   margin: 0 auto;
   position: relative;
 }
+.category-page {
+  .main-header {
+    height: auto;
+    border-bottom: none;
+    text-align: center;
+    color: #fff;
+    padding-top: 1em;
+
+    .topics {
+      a {
+        cursor: pointer;
+        margin: 0.3em 0.5em;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 .8em;
+      }
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.main-header {
+  background: #fff;
+  position: relative;
+  height: 370px;
+  color: #B3B3B3;
+
+  .hero-unit {
+    height: 100%;
+
+    h1 {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 3.2em;
+      margin-top: 50px;
+      padding-right: 8px;
+    }
+
+    .beta {
+      color: #ff8888;
+      font-weight: bolder;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+
+    a {
+      color: #B3B3B3;
+      &:hover {
+        color: #333;
+      }
+    }
+
+    .links {
+      border-right: #f88 5px solid;
+      padding: 7px 10px;
+      margin-top: 10px;
+      color: #999;
+      font-size: 0.7em;
+
+      a {
+        color: #999;
+        font-size: 1.6em;
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .action-button {
+      position: absolute;
+      bottom: -20px;
+      width: 60px;
+      height: 60px;
+      z-index: 99;
+    }
+
+    #typed-cursor {
+      position: absolute;
+      top: 20px;
+      font-weight: 100;
+      font-size: 5.5em;
+      width: 8px;
+      overflow: hidden;
+      &.blinking {
+        animation: 1s blink step-end infinite;
+      }
+
+    }
+  }
+}
+
 .manshar-profile {
   height: 100%;
 }
@@ -858,3 +955,47 @@ ul.cards-list-container {
   width: 100%;
   table-layout: fixed;
 }
+.users-card-list {
+  &.card-list {
+    .card {
+      display: inline-block;
+      width: 47%;
+      margin: 0.1em 0;
+      margin-right: 1%;
+
+      .header {
+        height: 10em;
+        padding-right: 0;
+
+        .stats-box {
+          font-size: .9em;
+          width: auto;
+          left:1em;
+        }
+
+        h1 {
+          position: absolute;
+          right: 0;
+          left: 0;
+          bottom: 0.5em;
+          text-align: center;
+        }
+
+        .title {
+          position: absolute;
+          z-index: 9;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+
+          a {
+            display: inline-block;
+            padding: 3em 0.5em;
+          }
+        }
+      }
+    }
+  }
+}
+

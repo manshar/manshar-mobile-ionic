@@ -30,9 +30,14 @@
           <i class="icon ion-email"></i>
           تسجيل الدخول
         </ion-item>
+
         <ion-item  ng-if="user.signedIn"  class="item-icon-right" menu-close ng-click="Showprofile()">
           <i class="icon ion-android-notifications"></i>
           ملفي الشخصي
+        </ion-item>
+        <ion-item   class="item-icon-right" menu-close ng-click="Showhome()">
+          <i class="icon ion-android-home"></i>
+        الرئيسية
         </ion-item>
         <ion-item class="item-icon-right" menu-close>
           <i class="icon ion-bookmark"></i>
@@ -72,7 +77,7 @@
 
     <ion-content>
       <ion-list>
-        <ion-item class="item-icon-right" style="color:{{category.color}};" ng-repeat="category in categories track by category.id" menu-close>
+        <ion-item ng-click="showCategory(category.id)" class="item-icon-right" style="color:{{category.color}};" ng-repeat="category in categories track by category.id" menu-close>
           <span class="icon {{category.icon_cssclass}}"></span>
           {{category.title}}
         </ion-item>

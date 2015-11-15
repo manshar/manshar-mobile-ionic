@@ -1,6 +1,6 @@
 angular.module('manshar')
 
-.controller('MainCtrl', function($scope,Article,User) {
+.controller('MainCtrl', function($scope,Article,User,$state) {
     $scope.order = 'popular';
     //TODO loading style
     $scope.articles = [{loading:true},{loading:true}];
@@ -9,6 +9,7 @@ angular.module('manshar')
       $scope.articles = articles;
       $scope.hasNext = true;
       $scope.publishers = User.query();
+      console.log('$scope.publishers', $scope.publishers);
     });
 
     var page = 1;
@@ -27,7 +28,9 @@ angular.module('manshar')
         $scope.hasNext = true;
       });
     };
-
+    $scope.Showprofile = function (userId) {
+      $state.go('app.profile',{userId:userId})
+    };
     $scope.showCategoriesPicker = function(){
       $scope.$emit('openCategoryMenuSide', {pickOnlyCategory: true});
     }

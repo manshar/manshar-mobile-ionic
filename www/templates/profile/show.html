@@ -1,4 +1,8 @@
 <ion-view view-title="">
+  <a  class="button button-float" nav-direction="back" href="/articles/new" class="write-new-button" ng-show="user.id == profile.id">
+    <i class="fa fa-pencil"></i>
+
+  </a>
   <ion-content>
 
 
@@ -64,10 +68,7 @@
 
     <div class="profile-list">
 
-      <a  class="button button-float" nav-direction="back" href="/articles/new" class="write-new-button" ng-show="user.id == profile.id">
-        <i class="fa fa-pencil"></i>
 
-      </a>
 
       <div ng-show="!articles[0]" class="no-articles-container">
         <h3 ng-show="activeTab == 'published'">لا يوجد أي منشورات</h3>

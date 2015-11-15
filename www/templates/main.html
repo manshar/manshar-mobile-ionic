@@ -13,6 +13,10 @@
         <i class="icon fa-clock-o"></i>
         الأحدث
       </a>
+      <a class="tab-item" ng-click="activeTab = 'publishers'" ng-class="{'active': activeTab == 'publishers'}">
+        <i class="icon fa-group"></i>
+        الناشرون
+      </a>
       <a class="tab-item" ng-click="showCategoriesPicker()">
         <i class="icon fa-th-large"></i>
         التصنيفات
@@ -22,6 +26,29 @@
 
   <a class="button button-float" nav-direction="back" ><i class="fa fa-pencil"></i></a>
   <ion-content class="stable-bg">
-    <div ng-include="'templates/partials/_articles_list.html'"></div>
+    <div ng-if="activeTab!='publishers'" ng-include="'templates/partials/_articles_list.html'"></div>
+    <ul ng-if="activeTab == 'publishers'" class="users-card-list cards-list-container one-column card-list">
+      <li ng-repeat="user in publishers" class="card with-cover">
+        <div class="user-details user-card">
+          <div class="header">
+            <div class="cover" data-manshar-cover url="{{user.thumb_url}}"></div>
+            <div class="dimmer"></div>
+            <div class="title">
+              <a ng-click="Showprofile(user.id)" >
+                <h1>{{user.name}}</h1>
+              </a>
+              <div class="stats-box">
+            <span ng-show="user.published_articles_count">
+              <i class="fa fa-edit"></i> {{user.published_articles_count}}
+            </span>
+            <span ng-show="user.comments_count">
+              <i class="fa fa-comment-o"></i> {{user.comments_count}}
+            </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </ion-content>
 </ion-view>

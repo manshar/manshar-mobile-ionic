@@ -180,7 +180,7 @@ angular.module('manshar')
       views: {
         'menuContent': {
           templateUrl: 'templates/categories/category.html',
-          // controller: 'PlaylistCtrl'
+           controller: 'CategoryCtrl'
         }
       }
     })
