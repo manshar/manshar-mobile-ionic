@@ -107,7 +107,7 @@ angular.module('manshar.services')
   .service('UserArticle', ['$resource', 'API_HOST',
       function ($resource, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var UserArticleResource = $resource(
         baseUrl + 'users/:userId/articles', {
           userId: '@userId'
@@ -127,7 +127,7 @@ angular.module('manshar.services')
   .service('CategoryArticle', ['$resource', 'API_HOST',
       function ($resource, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var CategoryArticleResource = $resource(
         baseUrl + 'categories/:categoryId/articles', {
           categoryId: '@categoryId'
@@ -147,7 +147,7 @@ angular.module('manshar.services')
   .service('TopicArticle', ['$resource', 'API_HOST',
       function ($resource, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var TopicArticleResource = $resource(
         baseUrl + 'categories/:categoryId/topics/:topicId/articles', {
           categoryId: '@categoryId',

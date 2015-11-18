@@ -4,7 +4,7 @@ angular.module('manshar.services')
   .service('SignupService', ['$http', '$rootScope', '$auth', 'API_HOST',
       function ($http, $rootScope, $auth, API_HOST) {
 
-    var baseUrl = '//' + API_HOST;
+    var baseUrl = 'http://' + API_HOST;
 
     return {
 
