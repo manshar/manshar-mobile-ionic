@@ -11,7 +11,8 @@ angular.module('manshar',
     'manshar.services',
     'manshar.derectivs',
     'AppConfig',
-    'ng-token-auth'])
+    'ng-token-auth',
+    'ngLocale'])
 
 .run(function($ionicPlatform,LoginService,$rootScope,$auth,$location,$q) {
 
