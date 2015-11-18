@@ -1,10 +1,7 @@
 
 <ion-view view-title='{{category.title}}  <i class="fa {{category.icon_cssclass}}"></i>
 ' >
-  <a  class="button button-float" nav-direction="back" href="/articles/new" class="write-new-button" ng-show="user.id == profile.id">
-    <i class="fa fa-pencil"></i>
 
-  </a>
   <style type="text/css">
     .category-page {
       min-height: 100%;
@@ -46,7 +43,10 @@
     background-color: {{category.color|darker:-0.4}};
     }
   </style>
+  <a  class="button button-float" nav-direction="back" href="/articles/new" class="write-new-button">
+    <i class="fa fa-pencil"></i>
 
+  </a>
   <ion-content class="category-page1">
     <header class="main-header1">
       <div class="hero-unit tray1">
