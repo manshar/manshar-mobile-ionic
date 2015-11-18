@@ -4,7 +4,7 @@ angular.module('manshar.services')
   .service('Image', ['$resource', '$http', '$q', '$upload', 'API_HOST',
       function ($resource, $http, $q, $upload, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var ImageResource = $resource(baseUrl + 'images/:imageId', {}, {
         get: {cache: true},
         query: {cache: true, isArray: true}

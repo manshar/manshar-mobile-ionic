@@ -4,7 +4,7 @@ angular.module('manshar.services')
   .service('Link', ['$resource', '$http', '$q', 'API_HOST',
       function ($resource, $http, $q, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var LinkResource = $resource(baseUrl + 'links/:linkId');
 
       return LinkResource;
@@ -20,7 +20,7 @@ angular.module('manshar.services')
   .service('UserLink', ['$resource', 'API_HOST',
       function ($resource, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var UserLinkResource = $resource(
         baseUrl + 'users/:userId/links', {
           userId: '@userId'

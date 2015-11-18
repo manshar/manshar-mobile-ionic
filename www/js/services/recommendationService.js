@@ -4,7 +4,7 @@ angular.module('manshar.services')
   .service('ArticleRecommendation', ['$resource', 'API_HOST',
       function ($resource, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var ArticleRecommendationResource = $resource(
         baseUrl + 'articles/:articleId/recommendations/:recommendationId', {
           articleId: '@articleId'
@@ -23,7 +23,7 @@ angular.module('manshar.services')
   .service('UserRecommendation', ['$resource', 'API_HOST',
       function ($resource, API_HOST) {
 
-      var baseUrl = '//' + API_HOST + '/api/v1/';
+      var baseUrl = 'http://' + API_HOST + '/api/v1/';
       var UserRecommendationResource = $resource(
         baseUrl + 'users/:userId/recommendations', {}, {
           get: {cache: true},
