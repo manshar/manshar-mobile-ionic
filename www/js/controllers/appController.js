@@ -1,7 +1,7 @@
 angular.module('manshar')
 
 .controller('AppCtrl', function($scope,$rootScope, $ionicModal,
-                                $state,$timeout,LoginService,Category,$ionicSideMenuDelegate,$stateParams) {
+                                $state,$timeout,LoginService,Category,$ionicSideMenuDelegate,$stateParams,$location) {
 
 
     $scope.$on('auth:logout-success', function(event, response) {
@@ -53,20 +53,16 @@ angular.module('manshar')
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
-    if($scope.modal.deferred)
-    {
 
-      $scope.modal.deferred.reject();
-    }
   };
 
   // Open the login modal
   $scope.ShowloginModal = function() {
     $scope.modal.show();
   };
-    $rootScope.$on('showLoginDialog', function(event, deferred) {
-      if(deferred)
-        $scope.modal.deferred=deferred;
+    $rootScope.$on('showLoginDialog', function(event, prev) {
+      if(prev)
+        $scope.prev=prev;
       $scope.modal.show();
     })
   // Perform the login action when the user submits the login form
@@ -81,27 +77,17 @@ angular.module('manshar')
   };
     $scope.$on('auth:login-success', function(event, response) {
 
-      $scope.me=response;
+      /*$scope.me=response;
       $scope.me.avatar_uid='http://manshar.s3.amazonaws.com/'+$scope.me.avatar_uid,
         $scope.me.statu='login'
-      $scope.modal.hide();
+      $scope.modal.hide();*/
     });
     var success = function(user) {
+      $scope.closeLogin();
+      if ($scope.prev) {
+        $state.go($scope.prev.name,$scope.prev.params)
 
-      if($scope.modal.deferred)
-      {
-
-        $scope.modal.deferred.resolve();
       }
-    //  $rootScope.checkAccess.resolve();
-    /*  $analytics.eventTrack('Login Success', {
-        category: 'User'
-      });*/
-     /* if ($stateParams.prev) {
-        $location.path($stateParams.prev)
-          // Remove the prev param when redirecting.
-          .search('prev', null);
-      }*/
     };
 
     var error = function(response) {

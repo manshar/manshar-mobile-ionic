@@ -77,7 +77,8 @@
 
     <ion-content>
       <ion-list>
-        <ion-item ng-click="showCategory(category.id)" class="item-icon-right" style="color:{{category.color}};" ng-repeat="category in categories track by category.id" menu-close>
+        <ion-item ng-click="showCategory(category.id)" class="item-icon-right" style="color:{{category.color}};"
+                  ng-repeat="category in categories track by category.id" menu-close>
           <span class="icon {{category.icon_cssclass}}"></span>
           {{category.title}}
         </ion-item>

@@ -5,30 +5,7 @@ angular.module('manshar')
     /**
      * Checks proper access to the route and reject it if unauthenticated.
      */
-    var checkAccess = {
-      load: ['$q', '$location', '$rootScope', '$auth', '$state','LoginService',
-        function($q, $location, $rootScope, $auth, $state, LoginService) {
 
-
-          var isPublic = $state.current.data.isPublic;
-          var isAdmin = $state.current.data.isAdmin;
-          var deferred = $q.defer();
-          var callback = function() {
-
-            if(LoginService.isAuthorized(isPublic, isAdmin)) {
-              console.log('$rootScope.user', $rootScope.user);
-              deferred.resolve();
-            } else {
-              deferred.reject();
-              $rootScope.$broadcast('showLoginDialog', {
-                'prev': $location.path()
-              });
-            }
-          };
-          $auth.validateUser().then(callback, callback);
-          return deferred.promise;
-        }]
-    };
 
 
   $stateProvider
@@ -150,6 +127,9 @@ angular.module('manshar')
       data:{
         isPublic:false,
         isAdmin:false
+      },
+      resolve:{
+        load:checkAccess.load
       },
       views: {
         'menuContent': {
