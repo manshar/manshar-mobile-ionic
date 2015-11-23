@@ -1,4 +1,6 @@
+
 <ul class="cards-list-container one-column card-list">
+
   <li ng-repeat="article in articles track by $index" class="card" ng-class="{'loading': article.loading, 'blinking': article.loading}">
     <div class="article-details article-card" style="border-left: 4em solid {{getCardColor(article.topic.category.color)}};">
       <div class="header">
@@ -34,6 +36,23 @@
           </div>
         </div>
       </div>
+    </div>
+  </li>
+  <li class="card" ng-if="Connection=='NONE'">
+    <div class="color-assertive" style="text-align: center">
+
+      <i style="font-size: 80pt;" class="ion-android-cloud"></i>
+      <i style="    font-size: 40pt;
+    color: white;
+    position: relative;
+    top: -18px;
+    left: 76px;" class="ion-android-sad" ></i>
+
+      <div>
+        لايوجد إتصال بالشبكة
+      </div>
+
+
     </div>
   </li>
 </ul>

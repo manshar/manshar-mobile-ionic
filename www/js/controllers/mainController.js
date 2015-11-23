@@ -10,6 +10,8 @@ angular.module('manshar')
       $scope.hasNext = true;
       $scope.publishers = User.query();
       console.log('$scope.publishers', $scope.publishers);
+    },function(error){
+      
     });
 
     var page = 1;

@@ -4,6 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
+
 angular.module('manshar',
   ['ionic',
     'ngResource',
@@ -14,73 +16,51 @@ angular.module('manshar',
     'ng-token-auth',
     'ngLocale'])
 
+  .config(function($provide) {
+  $provide.decorator('$state', function($delegate, $rootScope) {
+    $rootScope.$on('$stateChangeStart', function(event, state, params) {
+      $delegate.next = state;
+      $delegate.toParams = params;
+    });
+    return $delegate;
+  });
+})
+
 .run(function($ionicPlatform,LoginService,$rootScope,$auth,$location,$q) {
 
 
-    var checkAccess = function(event, next, current) {
 
-      /**
-       * First load to the AngularJS the user might have not been loaded
-       * so need to call the callback after validateUser promise is resolved.
-       */
-      var firstLoadCallback = function() {
-        if (!LoginService.isAuthorized(next.isPublic, next.isAdmin)) {
-          $location.path('/login').search('prev', $location.path());
-        }
-      };
-
-      // If this is the first load of the site.
-      if(!current) {
-        $auth.validateUser().then(firstLoadCallback, firstLoadCallback);
-      }
-      else if(!LoginService.isAuthorized(next.isPublic, next.isAdmin)) {
-        event.preventDefault();
-        // Show the dialog instead of redirecting for all navigations.
-        // Except first time landing on the site on protected page.
-        if (current) {
-          $rootScope.$broadcast('showLoginDialog', {
-            'prev': $location.path()
-          });
-        }
-      }
-    };
     $rootScope.page={
       title:'منشر'};
-    /**
-     * If the route to be accessed is private make sure the user is authenticated
-     * otherwise, broadcast 'showLoginDialog' to show login modal.
-     */
-    $rootScope.$on('$stateChangeStart11', function(event, next, current) {
-      checkAccess(event, next, current);
-    });
 
 
 
 
 
 
-    $rootScope.$on('$stateChangeStart11',
-      function(event, toState, toParams, fromState, fromParams){
-        var isPublic = toState.data.isPublic;
-        var isAdmin = toState.data.isAdmin;
-        var callback = function() {
 
-          if(LoginService.isAuthorized(isPublic, isAdmin)) {
-            console.log('$rootScope.user', $rootScope.user);
-            $rootScope.checkAccess.resolve();
-          } else {
 
-            $rootScope.$broadcast('showLoginDialog', {
-              'prev': $location.path()
-            });
-          }
-        };
-        $auth.validateUser().then(callback, callback);
-
-      })
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    if(window.Connection) {
+
+        if(navigator.connection.type == Connection.NONE) {
+          $rootScope.Connection='NONE'
+         /* console.log('window.Connection222', Connection);
+          alert("The internet is disconnected on your device.")*/
+     /*   $ionicPopup.confirm({
+          title: "Internet Disconnected",
+          content: "The internet is disconnected on your device."
+        })
+          .then(function(result) {
+            if(!result) {
+              ionic.Platform.exitApp();
+
+            }
+          });*/
+      }
+    }
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -163,3 +143,4 @@ angular.module('manshar',
   }])
 
 ;
+

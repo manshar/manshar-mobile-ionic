@@ -6,7 +6,31 @@ angular.module('manshar')
      * Checks proper access to the route and reject it if unauthenticated.
      */
 
+    var checkAccess= {
+      load:
+        function(AuthService,$state,$q){
 
+
+          var deferred = $q.defer();
+
+          var   permissions=$state.next.data.permissions;
+          if(permissions==undefined)deferred.resolve();
+          //
+          if (!AuthService.isAuthorized(permissions)) {
+
+            deferred.reject();
+          }
+          else{
+            deferred.resolve()
+          }
+          deferred.promise.then(function(){
+
+          },function(){
+
+            $state.go('routeForUnauthorizedAccess')
+          });
+        }
+    };
 
   $stateProvider
 
