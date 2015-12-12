@@ -14,7 +14,8 @@ angular.module('manshar',
     'manshar.derectivs',
     'AppConfig',
     'ng-token-auth',
-    'ngLocale'])
+    'ngLocale',
+    'ngCordova'])
 
   .config(function($provide) {
   $provide.decorator('$state', function($delegate, $rootScope) {

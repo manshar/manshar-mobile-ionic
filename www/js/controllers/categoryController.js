@@ -30,8 +30,24 @@ angular.module('manshar')
     CategoryArticle.query({'categoryId': $stateParams.categoryId},
         function(articles) {
       $scope.articles = articles;
+      $scope.hasNext = true;
     });
 
+    var page = 1;
+    $scope.hasNext = false;
+    $scope.loadMoreArticles = function() {
+      $scope.inProgress = 'load-more';
+      Article.query({
+        'order': $scope.order,
+        'page': ++page
+      }, function(articles) {
+        if (!articles || !articles.length) {
+          $scope.hasNext = false;
+        }
+        Array.prototype.push.apply($scope.articles, articles);
+        $scope.inProgress = null;
+      });
+    };
     $scope.showCategoriesPicker = function() {
 
       //$rootScope.$emit('openTopicPicker', {pickOnlyCategory: true});

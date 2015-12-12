@@ -1,8 +1,14 @@
 
-<ion-view view-title='{{category.title}}  <i class="fa {{category.icon_cssclass}}"></i>
-' >
-
+<ion-view view-title='' >
+  <ion-nav-bar class="">
+    <ion-header-bar></ion-header-bar>
+    <ion-nav-back-button></ion-nav-back-button>
+    <ion-nav-title>{{category.title}}  <i class="fa {{category.icon_cssclass}}"></i></ion-nav-title>
+  </ion-nav-bar>
   <style type="text/css">
+    ion-header-bar{
+      background-color: #777;
+    }
     .category-page {
       min-height: 100%;
     }
@@ -47,10 +53,10 @@
     <i class="fa fa-pencil"></i>
 
   </a>
-  <ion-content class="category-page1">
-    <header class="main-header1">
-      <div class="hero-unit tray1">
-        <h1 ng-click="showCategoriesPicker()">
+  <ion-content class="category-page">
+    <header class="main-header">
+      <div class="hero-unit tray">
+        <h1 style="color: #fff" ng-click="showCategoriesPicker()">
           <i class="fa {{category.icon_cssclass}}"></i>
           {{category.title}}
         </h1>
@@ -61,11 +67,11 @@
           </a>
         </p>
       </div>
-      <div class="category-nav-actions1" ng-class="{'move-up1': forceBar && moveUp}">
-        <button ng-click="showCategoriesPicker()">
-          <i class="fa fa-th-large"></i>22222222222222222222222222
-        </button>
-      </div>
+      <!--<div class="category-nav-actions1" ng-class="{'move-up1': forceBar && moveUp}">-->
+        <!--<button ng-click="showCategoriesPicker()">-->
+          <!--<i class="fa fa-th-large"></i>22222222222222222222222222-->
+        <!--</button>-->
+      <!--</div>-->
 
     </header>
 

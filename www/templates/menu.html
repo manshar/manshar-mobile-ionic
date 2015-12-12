@@ -21,15 +21,16 @@
 
           </div>
           <div class="title">
-            <img ng-src="http://manshar.s3.amazonaws.com/{{user.avatar_uid}}" alt=""/>
+            <!--<img ng-src="http://manshar.s3.amazonaws.com/{{user.avatar_uid}}" alt=""/>-->
+            <img src="img/manshar@64x64.png" alt=""/>
             <h3 style="margin: 2px;font-size: 14px">{{user.name}}</h3>
           </div>
         </div>
 
-        <ion-item  ng-if="!user.signedIn" class="item-icon-right" menu-close ng-click="ShowloginModal()">
-          <i class="icon ion-email"></i>
-          تسجيل الدخول
-        </ion-item>
+        <!--<ion-item  ng-if="!user.signedIn" class="item-icon-right" menu-close ng-click="ShowloginModal()">-->
+          <!--<i class="icon ion-email"></i>-->
+          <!--تسجيل الدخول-->
+        <!--</ion-item>-->
 
         <ion-item  ng-if="user.signedIn"  class="item-icon-right" menu-close ng-click="Showprofile()">
           <i class="icon ion-android-notifications"></i>
@@ -39,23 +40,23 @@
           <i class="icon ion-android-home"></i>
         الرئيسية
         </ion-item>
-        <ion-item class="item-icon-right" menu-close>
-          <i class="icon ion-bookmark"></i>
-          المحفوضات
-        </ion-item>
-        <ion-item class="item-icon-right" menu-close ng-click="Showprofile()">
-          <i class="icon ion-android-notifications"></i>
-          التنبيهات
-        </ion-item>
-        <ion-item class="item-icon-right" menu-close>
-          <i class="icon ion-settings"></i>
-          الإعدادات
-        </ion-item>
-        <ion-item class="item-icon-right" menu-close>
+        <!--<ion-item class="item-icon-right" menu-close>-->
+          <!--<i class="icon ion-bookmark"></i>-->
+          <!--المحفوضات-->
+        <!--</ion-item>-->
+        <!--<ion-item class="item-icon-right" menu-close ng-click="Showprofile()">-->
+          <!--<i class="icon ion-android-notifications"></i>-->
+          <!--التنبيهات-->
+        <!--</ion-item>-->
+        <!--<ion-item class="item-icon-right" menu-close>-->
+          <!--<i class="icon ion-settings"></i>-->
+          <!--الإعدادات-->
+        <!--</ion-item>-->
+        <ion-item class="item-icon-right" menu-close ng-click="goLink('http://www.manshar.org/')">
           <i class="icon ion-ios-world-outline"></i>
           قصّة منشر
         </ion-item>
-        <ion-item class="item-icon-right" menu-close>
+        <ion-item class="item-icon-right" menu-close ui-sref="app.article({articleId:'652'})">
           <i class="icon ion-ionic"></i>
           شروط الإستخدام
         </ion-item>

@@ -1003,3 +1003,12 @@ ul.cards-list-container {
 }
 .color-assertive{color: $assertive}
 .color-light{color: $light}
+.load-more-button {
+  padding: 1em;
+  background: #eee;
+  margin: 0 auto;
+  width: 60%;
+  display: block;
+  border: none;
+  margin-top: 3em;
+}

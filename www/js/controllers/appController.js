@@ -1,8 +1,11 @@
 angular.module('manshar')
 
 .controller('AppCtrl', function($scope,$rootScope, $ionicModal,
-                                $state,$timeout,LoginService,Category,$ionicSideMenuDelegate,$stateParams,$location) {
+                                $state,$timeout,LoginService,Category,$ionicSideMenuDelegate,$cordovaInAppBrowser,$ionicLoading) {
 
+    $scope.goLink = function(link){
+      $cordovaInAppBrowser.open(link, "_system", {location:'yes'});
+    }
 
     $scope.$on('auth:logout-success', function(event, response) {
 
@@ -53,7 +56,6 @@ angular.module('manshar')
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
-
   };
 
   // Open the login modal
@@ -67,8 +69,8 @@ angular.module('manshar')
     })
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-
-    LoginService.login({"email":"ali@soufnet.com","password":"198328inf"}, success, error);
+    $ionicLoading.show()
+    LoginService.login($scope.loginData, success, error);
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     /*$timeout(function() {
@@ -83,6 +85,7 @@ angular.module('manshar')
       $scope.modal.hide();*/
     });
     var success = function(user) {
+      $ionicLoading.hide();
       $scope.closeLogin();
       if ($scope.prev) {
         $state.go($scope.prev.name,$scope.prev.params)
@@ -91,6 +94,7 @@ angular.module('manshar')
     };
 
     var error = function(response) {
+      $ionicLoading.hide();
       console.log('response', response);
 
    /*

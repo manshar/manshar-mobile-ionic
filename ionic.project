@@ -7,8 +7,8 @@
         "proxyUrl": "http://api.manshar.com/api"
       },
       {
-                "path": "/auth",
-                "proxyUrl": "http://api.manshar.com/auth"
-              }
+        "path": "/auth",
+        "proxyUrl": "http://api.manshar.com/auth"
+      }
     ]
 }
